@@ -18,4 +18,4 @@ COPY ./files /server-skeleton
 
 WORKDIR /server-skeleton
 
-CMD ["run.sh"]
+CMD ["server-skeleton/run.sh"]
