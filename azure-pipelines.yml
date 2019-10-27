@@ -12,11 +12,11 @@ variables:
   - name: versionBuilder
     value: 'latest'
   - name: addonName
-    value: 'openvpn-monitor'
+    value: 'etesync-server'
   - name: repository
     value: 'RuimteDraak/hassio-repository.git'
   - name: buildTarget
-    value: '--armv7'
+    value: '--all'
 
 jobs:
   - job: prepare
