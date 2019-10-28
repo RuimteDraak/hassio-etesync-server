@@ -18,5 +18,5 @@ WORKDIR /server-skeleton
 
 COPY ./files ./
 
-CMD virtualenv --python=/usr/bin/python3 venv && source venv/bin/activate && exec sh run.sh
+CMD source venv/bin/activate && exec sh run.sh
 # CMD ["sh", "run.sh"]
