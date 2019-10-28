@@ -14,8 +14,9 @@ RUN apk add --no-cache \
   && source venv/bin/activate \
   && pip install -r requirements.txt
 
-COPY ./files /server-skeleton
-
 WORKDIR /server-skeleton
 
-CMD ["server-skeleton/run.sh"]
+COPY ./files ./
+
+CMD virtualenv --python=/usr/bin/python3 venv && source venv/bin/activate && exec sh run.sh
+# CMD ["sh", "run.sh"]
