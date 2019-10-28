@@ -7,7 +7,7 @@ echo "Migration done"
 
 echo "Createing Admin"
 
-.manage.py createsuperuser
+./manage.py createsuperuser
 
 echo "Starting DEBUG Server"
 echo "DO NOT USE FOR PRODUCTION STUFF"
