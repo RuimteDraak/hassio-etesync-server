@@ -1,4 +1,4 @@
 #!/bin/bash
 
 ./manage.py migrate
-./manage.py runserver 0.0.0.0:80
+./manage.py runserver 0.0.0.0:8099
