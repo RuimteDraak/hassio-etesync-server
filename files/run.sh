@@ -1,7 +1,7 @@
 #!/bin/bash
 
 INITIAL=1
-FILE=/config/etesync/db.sqlite3
+FILE=/config/etesync/etesyncdb.sqlite3
 
 mkdir -p /config/etesync
 
