@@ -9,7 +9,7 @@ RUN apk add --no-cache \
   build-base \
   net-tools \
   nginx \
-  uwsgi-python \
+  uwsgi-python3 \
   supervisor \
   && pip install virtualenv \
   && cd /etc \
