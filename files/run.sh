@@ -2,6 +2,9 @@
 
 INITIAL=1
 FILE=/config/etesync/db.sqlite3
+
+mkdir -p /config/etesync
+
 if [ -f "$FILE" ]; then
     INITIAL=0
 fi
