@@ -1,7 +1,7 @@
 #!/bin/bash
 
 INITIAL=1
-FILE=/data/db.sqlite3
+FILE=/config/etesync/db.sqlite3
 if [ -f "$FILE" ]; then
     INITIAL=0
 fi
