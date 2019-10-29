@@ -7,16 +7,41 @@ RUN apk add --no-cache \
   python3-dev \
   py-pip \
   build-base \
+  net-tools \
+  nginx \
+  uwsgi-python \
+  supervisor \
   && pip install virtualenv \
-  && git clone https://github.com/etesync/server-skeleton.git \
-  && cd server-skeleton \
+  && cd /etc \
+  && git clone https://github.com/etesync/server.git \
+  && cd server \
   && virtualenv --python=/usr/bin/python3 venv \
   && source venv/bin/activate \
-  && pip install -r requirements.txt
+  && pip install -r requirements.txt \
+  \
+  && adduser -D -s /bin/bash EtesyncUser \
+  && rm -f /etc/nginx/fastcgi.conf /etc/nginx/fastcgi_params \
+  && rm -f /etc/nginx/snippets/fastcgi-php.conf
 
-WORKDIR /server-skeleton
+
+
+### COPY's are handled by 1 rootfs copy
+# COPY nginx/ssl /etc/nginx/ssl
+# COPY nginx/snippets /etc/nginx/snippets
+# COPY nginx/sites-available /etc/nginx/sites-available
+# COPY etc/supervisord.conf /etc/supervisord.conf
+# COPY etc/uwsgi/wsgi.ini /etc/uwsgi/wsgi.ini
+
+COPY ./rootfs /
+
+#TODO Run through supervisord
+
+WORKDIR /etc/server
 
 COPY ./files ./
 
+RUN ls /etc/nginx
+
+# ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]
+
 CMD source venv/bin/activate && exec sh run.sh
-# CMD ["sh", "run.sh"]

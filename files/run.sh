@@ -16,7 +16,8 @@ if [ $INITIAL == 1 ]; then
     ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'adminpass')"
 fi
 
-echo "Starting DEBUG Server"
-echo "DO NOT USE FOR PRODUCTION STUFF"
+# Starting supervisord
 
-./manage.py runserver 0.0.0.0:8800
+# ./manage.py runserver 0.0.0.0:8800
+
+supervisord --nodaemon --configuration /etc/supervisord.conf
