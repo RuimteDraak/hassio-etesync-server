@@ -16,7 +16,7 @@ echo "Migration done"
 
 if [ $INITIAL == 1 ]; then
     echo "Createing Admin"
-    ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin@example.com', 'admin', 'adminpass')"
+    ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'adminpass')"
 fi
 
 # Starting supervisord
