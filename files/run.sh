@@ -19,9 +19,13 @@ if [ $INITIAL == 1 ]; then
     ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin@example.com', 'admin', 'adminpass')"
 fi
 
-echo "Printing config (rights)"
+echo "ls -l /config"
 
 ls -l /config
+
+echo "ls -l /config/etesync"
+
+ls -l /config/etesync
 
 # Starting supervisord
 
