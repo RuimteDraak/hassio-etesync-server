@@ -21,7 +21,8 @@ RUN apk add --no-cache \
   \
   && adduser -D -s /bin/bash EtesyncUser \
   && ./manage.py collectstatic \
-  && chown -R root:www-data \static \
+  && chown -R root:www-data /static \
+  && chmod -R 754 /static \
   && rm -f /etc/nginx/fastcgi.conf /etc/nginx/fastcgi_params \
   && rm -f /etc/nginx/snippets/fastcgi-php.conf
 
