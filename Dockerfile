@@ -23,14 +23,8 @@ RUN apk add --no-cache \
   && rm -f /etc/nginx/fastcgi.conf /etc/nginx/fastcgi_params \
   && rm -f /etc/nginx/snippets/fastcgi-php.conf
 
-
-
 ### COPY's are handled by 1 rootfs copy
 # COPY nginx/ssl /etc/nginx/ssl
-# COPY nginx/snippets /etc/nginx/snippets
-# COPY nginx/sites-available /etc/nginx/sites-available
-# COPY etc/supervisord.conf /etc/supervisord.conf
-# COPY etc/uwsgi/wsgi.ini /etc/uwsgi/wsgi.ini
 
 COPY ./rootfs /
 
@@ -39,9 +33,5 @@ COPY ./rootfs /
 WORKDIR /etc/server
 
 COPY ./files ./
-
-RUN ls /etc/nginx
-
-# ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]
 
 CMD source venv/bin/activate && exec sh run.sh
