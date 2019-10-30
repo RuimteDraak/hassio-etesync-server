@@ -10,9 +10,6 @@
   "ingress": false,
   "panel_icon": "mdi:calendar-today",
   "homeassistant_api": false,
-  "map": [
-    "config:rw"
-  ],
   "options": {
   },
   "schema": {

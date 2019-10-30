@@ -1,9 +1,7 @@
 #!/bin/bash
 
 INITIAL=1
-FILE=/data/etesync/etesyncdb.sqlite3
-
-mkdir -p /data/etesync
+FILE=/data/etesyncdb.sqlite3
 
 if [ -f "$FILE" ]; then
     INITIAL=0
