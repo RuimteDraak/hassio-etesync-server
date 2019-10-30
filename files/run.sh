@@ -1,9 +1,9 @@
 #!/bin/bash
 
 INITIAL=1
-FILE=/config/etesync/etesyncdb.sqlite3
+FILE=/data/etesync/etesyncdb.sqlite3
 
-mkdir -p /config/etesync
+mkdir -p /data/etesync
 
 if [ -f "$FILE" ]; then
     INITIAL=0
@@ -19,8 +19,5 @@ if [ $INITIAL == 1 ]; then
     ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'adminpass')"
 fi
 
-# Starting supervisord
-
-# ./manage.py runserver 0.0.0.0:8800
-
+# Start supervisord
 supervisord --nodaemon --configuration /etc/supervisord.conf
