@@ -23,8 +23,8 @@ RUN apk add --no-cache \
   && mkdir /etc/server/etesync_server/static \
   && ln -s /etc/server/etesync_server/static ./static \
   && ./manage.py collectstatic \
-  && chown -R root:www-data ./static \
-  && chmod -R 754 ./static \
+  && chown -R root:www-data ./ \
+  && chmod -R 754 ./ \
   && rm -f /etc/nginx/fastcgi.conf /etc/nginx/fastcgi_params \
   && rm -f /etc/nginx/snippets/fastcgi-php.conf
 
