@@ -7,6 +7,9 @@ if [ -f "$FILE" ]; then
     INITIAL=0
 fi
 
+# Copy settings into ini file
+chevron -d /data/options.json /etc/server/config.mustache > /etc/server/etesync-server.ini
+
 echo "Start migration"
 ./manage.py migrate
 
