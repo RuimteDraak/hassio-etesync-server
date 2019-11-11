@@ -16,8 +16,20 @@ echo "Start migration"
 echo "Migration done"
 
 if [ $INITIAL == 1 ]; then
-    echo "Createing Admin"
-    ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'adminpass')"
+    GENERATEDPASSWORD=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+    echo
+    echo
+    echo
+    echo "********************************"
+    echo "Createing Admin with password '$GENERATEDPASSWORD'"
+    echo "Make sure to save the password somewhere save as it cannot be recoverd."
+    echo "This password can be changed once the server is running."
+    echo "********************************"
+    echo
+    echo
+    echo
+    ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', '$GENERATEDPASSWORD')"
+    GENERATEDPASSWORD=""
 fi
 
 # Start supervisord
