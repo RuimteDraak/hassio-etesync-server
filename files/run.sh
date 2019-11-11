@@ -21,14 +21,14 @@ if [ $INITIAL == 1 ]; then
     echo
     echo
     echo "********************************"
-    echo "Createing Admin with password '$GENERATEDPASSWORD'"
-    echo "Make sure to save the password somewhere save as it cannot be recoverd."
+    echo "Creating Admin with password '$GENERATEDPASSWORD'"
+    echo "Make sure to save the password somewhere safe as it cannot be recoverd."
     echo "This password can be changed once the server is running."
     echo "********************************"
     echo
     echo
     echo
-    ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', '$GENERATEDPASSWORD')"
+    ./manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@admin.com', '$GENERATEDPASSWORD')"
     GENERATEDPASSWORD=""
 fi
 
