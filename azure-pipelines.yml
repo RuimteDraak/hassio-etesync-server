@@ -193,7 +193,6 @@ stages:
   - stage: Push
     jobs:
       - job: update_repository
-        dependsOn: [ build_aamd64, build_aarch64, build_armhf, build_armv7, build_i386 ]
         variables:
           version: $[ dependencies.A.outputs['prepare.version'] ]
         steps:
