@@ -32,5 +32,20 @@ if [ $INITIAL == 1 ]; then
     GENERATEDPASSWORD=""
 fi
 
+
+if bashio::config.true 'ssl' then
+  # Setup ssl in nginx
+  sed 's/%%portandmode%%/443 ssl/g' /etc/nginx/nginx.conf
+else
+  # Setup http ports in nginx
+   sed 's/%%portandmode%%/80 default/g' /etc/nginx/nginx.conf
+fi
+
+CERTFILE=$(bashio::config 'certfile')
+KEYFILE=$(bashio::config 'keyfile')
+
+sed 's/%%certificatefile%%/$CERTFILE/g' /etc/nginx/nginx.conf
+sed 's/%%certificatekeyfile%%/$KEYFILE/g' /etc/nginx/nginx.conf
+
 # Start supervisord
 supervisord --nodaemon --configuration /etc/supervisord.conf
