@@ -35,18 +35,18 @@ fi
 bashio::config.require.ssl
 if bashio::config.true 'ssl'; then
   # Setup ssl in nginx
-  sed 's#%%portandmode%%#443 ssl#g' /etc/nginx/nginx.conf
+  sed 's#%%portandmode%%#443 ssl#g' /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
 
   CERTFILE=$(bashio::config 'certfile')
   KEYFILE=$(bashio::config 'keyfile')
 
-  sed 's#%%certificatefile%%#${CERTFILE}#g' /etc/nginx/nginx.conf
-  sed 's#%%certificatekeyfile%%#${KEYFILE}#g' /etc/nginx/nginx.conf
+  sed 's#%%certificatefile%%#${CERTFILE}#g' /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
+  sed 's#%%certificatekeyfile%%#${KEYFILE}#g' /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
 else
   # Setup http ports in nginx
-  sed 's#%%portandmode%%#80 default#g' /etc/nginx/nginx.conf
-  sed "s#ssl_certificate /ssl/%%certificatefile%%##g"
-  sed "s#ssl_certificate_key /ssl/%%certificatekeyfile%%##g"
+  sed 's#%%portandmode%%#80 default#g' /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
+  sed "s#ssl_certificate /ssl/%%certificatefile%%##g" /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
+  sed "s#ssl_certificate_key /ssl/%%certificatekeyfile%%##g" /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
 fi
 
 # Start supervisord
