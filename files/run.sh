@@ -33,7 +33,10 @@ if [ $INITIAL == 1 ]; then
 fi
 
 bashio::config.require.ssl
-if bashio::config.true 'ssl'; then
+if bashio::config.true 'ssl'; 
+then
+  echo "Setting up SSL"
+
   # Setup ssl in nginx
   sed 's#%%portandmode%%#443 ssl#g' /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
 
@@ -43,11 +46,14 @@ if bashio::config.true 'ssl'; then
   sed 's#%%certificatefile%%#${CERTFILE}#g' /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
   sed 's#%%certificatekeyfile%%#${KEYFILE}#g' /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
 else
+  echo "Setting up default http"
   # Setup http ports in nginx
   sed 's#%%portandmode%%#80 default#g' /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
-  sed "s#ssl_certificate /ssl/%%certificatefile%%##g" /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
-  sed "s#ssl_certificate_key /ssl/%%certificatekeyfile%%##g" /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
+  sed "s#ssl_certificate /ssl/%%certificatefile%%# #g" /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
+  sed "s#ssl_certificate_key /ssl/%%certificatekeyfile%%# #g" /etc/nginx/nginx.conf > /etc/nginx/nginx.conf
 fi
+
+echo cat /etc/nginx/nginx.conf
 
 # Start supervisord
 supervisord --nodaemon --configuration /etc/supervisord.conf
