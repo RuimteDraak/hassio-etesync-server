@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bashio
 
 INITIAL=1
 FILE=/data/etesyncdb.sqlite3
