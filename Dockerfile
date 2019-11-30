@@ -39,4 +39,4 @@ WORKDIR /etc/server
 
 COPY ./files ./
 
-CMD source venv/bin/activate && exec sh run.sh
+CMD source venv/bin/activate && exec ./run.sh

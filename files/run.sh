@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/env bashio
 
 INITIAL=1
 FILE=/data/etesyncdb.sqlite3
@@ -32,7 +32,6 @@ if [ $INITIAL == 1 ]; then
     GENERATEDPASSWORD=""
 fi
 
-bashio::config.require.ssl
 if bashio::config.true 'ssl'; 
 then
   echo "Setting up SSL"
@@ -43,14 +42,14 @@ then
   CERTFILE=$(bashio::config 'certfile')
   KEYFILE=$(bashio::config 'keyfile')
 
-  sed -i 's#%%certificatefile%%#${CERTFILE}#g' /etc/nginx/nginx.conf
-  sed -i 's#%%certificatekeyfile%%#${KEYFILE}#g' /etc/nginx/nginx.conf
+  sed -i "s#%%certificatefile%%#${CERTFILE}#g" /etc/nginx/nginx.conf
+  sed -i "s#%%certificatekeyfile%%#${KEYFILE}#g" /etc/nginx/nginx.conf
 else
   echo "Setting up default http"
   # Setup http ports in nginx
   sed -i 's#%%portandmode%%#80 default#g' /etc/nginx/nginx.conf
-  sed -i 's#ssl_certificate /ssl/%%certificatefile%%##g' /etc/nginx/nginx.conf
-  sed -i 's#ssl_certificate_key /ssl/%%certificatekeyfile%%##g' /etc/nginx/nginx.conf
+  sed -i 's#ssl_certificate /ssl/%%certificatefile%%;##g' /etc/nginx/nginx.conf
+  sed -i 's#ssl_certificate_key /ssl/%%certificatekeyfile%%;##g' /etc/nginx/nginx.conf
 fi
 
 # Start supervisord
