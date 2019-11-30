@@ -39,4 +39,6 @@ WORKDIR /etc/server
 
 COPY ./files ./
 
+RUN chmod +x ./run.sh
+
 CMD source venv/bin/activate && exec ./run.sh
