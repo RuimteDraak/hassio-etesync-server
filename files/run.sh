@@ -34,10 +34,8 @@ fi
 
 if bashio::config.true 'ssl'; 
 then
-  echo "Setting up SSL"
-
   # Setup ssl in nginx
-  sed -i 's#%%portandmode%%#443 ssl#g' /etc/nginx/nginx.conf
+  sed -i 's#%%portandmode%%#80 ssl#g' /etc/nginx/nginx.conf
 
   CERTFILE=$(bashio::config 'certfile')
   KEYFILE=$(bashio::config 'keyfile')
@@ -45,7 +43,6 @@ then
   sed -i "s#%%certificatefile%%#${CERTFILE}#g" /etc/nginx/nginx.conf
   sed -i "s#%%certificatekeyfile%%#${KEYFILE}#g" /etc/nginx/nginx.conf
 else
-  echo "Setting up default http"
   # Setup http ports in nginx
   sed -i 's#%%portandmode%%#80 default#g' /etc/nginx/nginx.conf
   sed -i 's#ssl_certificate /ssl/%%certificatefile%%;##g' /etc/nginx/nginx.conf
