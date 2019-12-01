@@ -35,7 +35,7 @@ fi
 if bashio::config.true 'ssl'; 
 then
   # Setup ssl in nginx
-  sed -i 's#%%portandmode%%#8080 ssl#g' /etc/nginx/nginx.conf
+  sed -i 's#%%portandmode%%#8080 ssl http2#g' /etc/nginx/nginx.conf
 
   CERTFILE=$(bashio::config 'certfile')
   KEYFILE=$(bashio::config 'keyfile')
