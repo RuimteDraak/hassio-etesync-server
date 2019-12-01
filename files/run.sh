@@ -49,5 +49,8 @@ else
   sed -i 's#ssl_certificate_key /ssl/%%certificatekeyfile%%;##g' /etc/nginx/nginx.conf
 fi
 
+HASSIODNS=$(bashio::dns.host)
+sed -i "s#%%hassiodns%%#${HASSIODNS}#g" /etc/nginx/nginx.conf
+
 # Start supervisord
 supervisord --nodaemon --configuration /etc/supervisord.conf
