@@ -28,17 +28,9 @@ RUN apk add --no-cache \
   && rm -f /etc/nginx/fastcgi.conf /etc/nginx/fastcgi_params \
   && rm -f /etc/nginx/snippets/fastcgi-php.conf
 
-### COPY's are handled by 1 rootfs copy
-# COPY nginx/ssl /etc/nginx/ssl
-
 COPY ./rootfs /
 
-#TODO Run through supervisord
-
 WORKDIR /etc/server
-
-COPY ./files ./
-
 RUN chmod +x ./run.sh
 
 CMD source venv/bin/activate && exec ./run.sh
