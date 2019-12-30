@@ -9,7 +9,7 @@ RUN apk add --no-cache \
   build-base \
   net-tools \
   nginx \
-  uwsgi-python3 \
+  uwsgi-python \
   supervisor \
   && pip install virtualenv chevron \
   && cd /etc \
