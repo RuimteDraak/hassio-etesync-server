@@ -226,6 +226,8 @@ stages:
 
               Copy-Item -Path "$(Build.SourcesDirectory)/config.json" -Destination "$(Build.SourcesDirectory)/hassio-repository/hassio-$(addonName)/config.json"
               Copy-Item -Path "$(Build.SourcesDirectory)/README.md" -Destination "$(Build.SourcesDirectory)/hassio-repository/hassio-$(addonName)/README.md"
+              Copy-Item -Path "$(Build.SourcesDirectory)/icon.png" -Destination "$(Build.SourcesDirectory)/hassio-repository/hassio-$(addonName)/icon.png"
+              Copy-Item -Path "$(Build.SourcesDirectory)/logo.png" -Destination "$(Build.SourcesDirectory)/hassio-repository/hassio-$(addonName)/logo.png"
 
               git config --global user.email "RuimteDraak@no-reply.nl"
               git config --global user.name "RuimteDraak"
