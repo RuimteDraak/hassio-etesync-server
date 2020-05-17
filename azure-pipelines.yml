@@ -193,14 +193,17 @@ stages:
   - stage: Push
     jobs:
       - job: update_repository
-        variables:
-          version: $[ dependencies.A.outputs['prepare.version'] ]
         steps:
         - task: PowerShell@2
           inputs:
             targetType: 'inline'
             script: |
               git clone https://x-access-token:$(gitRepositoryToken)@github.com/$(repository)
+
+              $file = "$(Build.SourcesDirectory)/config.json"
+              $json = (Get-Content -Path $file | Out-String | ConvertFrom-Json)
+              Write-Host "$json"
+              $version = $json.version
 
               if (!(Test-Path "$(Build.SourcesDirectory)/hassio-repository/hassio-$(addonName)" -PathType Container)) {
                 New-Item -Path "$(Build.SourcesDirectory)/hassio-repository" -Name "hassio-$(addonName)" -ItemType "directory"
@@ -210,9 +213,9 @@ stages:
               cd hassio-repository/hassio-$(addonName)
               if (Test-Path "config.json" -PathType Leaf) {
                 $json = (Get-Content -Path "config.json" | Out-String | ConvertFrom-Json)
-                $newVersion = $json.version
+                $currentVersion = $json.version
 
-                if ([version]$newVersion -gt [version]$version) {
+                if ([version]$version -gt [version]$currentVersion) {
                   Write-Host "New version bigger then previous version"
                 }
                 else {
