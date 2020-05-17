@@ -9,7 +9,7 @@ RUN apk add --no-cache \
   uwsgi-python3 \
   supervisor \
   \
-  && pip install chevron \
+  && pip install virtualenv chevron \
   && cd /etc \
   && git clone https://github.com/etesync/server.git \
   && cd server \
