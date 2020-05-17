@@ -13,6 +13,8 @@ RUN apk add --no-cache \
   && cd /etc \
   && git clone https://github.com/etesync/server.git \
   && cd server \
+  && virtualenv --python=/usr/bin/python3 venv \	
+  && source venv/bin/activate \
   && pip install -r requirements.txt \
   \
   && adduser -D -s /bin/bash EtesyncUser \
@@ -29,4 +31,4 @@ COPY ./rootfs /
 WORKDIR /etc/server
 RUN chmod +x ./run.sh
 
-CMD exec ./run.sh
+CMD source venv/bin/activate && exec ./run.sh
