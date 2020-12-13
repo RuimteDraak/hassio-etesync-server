@@ -12,6 +12,7 @@ RUN apk add --no-cache \
   libc-dev \
   libffi-dev \
   postgresql-dev \
+  python3-dev \
   \
   && pip install virtualenv chevron \
   && cd /etc \
