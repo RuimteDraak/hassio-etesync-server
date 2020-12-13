@@ -8,6 +8,9 @@ RUN apk add --no-cache \
   nginx \
   uwsgi-python3 \
   supervisor \
+  linux-headers \
+  libc-dev \
+  libffi-dev \
   postgresql-dev \
   \
   && pip install virtualenv chevron \
